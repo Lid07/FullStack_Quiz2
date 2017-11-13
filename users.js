@@ -40,11 +40,24 @@ function findbyroles(req, res) {
         if (err) throw err;
         console.log(result);
         res.json(result);
-    });
+    });     
+};
+function Lastname(req, res) {
+    var last_name = req.query.last_name;
+    console.log(last_name);
+    db.collection("users")
+        .findOne({
+            last_name: last_name
+        },
+        function (err, item) {
+            console.log(item);
+            res.send(item);
+        });
 };
 
 module.exports = {
     findAll: findAll,
     findById: findById,
-    findbyroles: findbyroles
+    findbyroles: findbyroles,
+    Lastname: Lastname
 };
